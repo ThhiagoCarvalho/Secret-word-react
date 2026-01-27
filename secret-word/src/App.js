@@ -28,8 +28,11 @@ function App() {
 
   const [letrasCorretas, setLetrasCorretas] = useState([]);
   const [letrasErradas, setLetrasErradas] = useState([]);
-  const [tentativas, setTentativas] = useState(3);
+  const [tentativas, setTentativas] = useState(5);
   const [pontuacao, setPontuacao] = useState(0);
+
+  // NOVO: Controlar tentativas feitas no App
+  const [tentativasFeitas, setTentativasFeitas] = useState([]);
 
   const escolherPalavraECategoria = useCallback(() => {
     const categorias = Object.keys(words);
@@ -50,7 +53,6 @@ function App() {
 
     const letrasPalavra = palavra.toLowerCase().split("");
     console.log(letrasPalavra);
-    console.log(letrasPalavra);
 
     setPalavraEscolhida(palavra);
     setCategoriaEscolhida(categoria);
@@ -59,63 +61,74 @@ function App() {
     setGameStage(fases[1].name);
   }, [escolherPalavraECategoria]);
 
-  const verificarPalavra = (letra) => {
-    letra = letra.toLowerCase();
-    //checar se a letra ja foi escolhida
-    if (letrasCorretas.includes(letra) || letrasErradas.includes(letra)) {
-      return;
-    }
+  // MODIFICADO: Verificar a palavra completa e reiniciar após acerto
+  const verificarPalavra = (palavraTentada) => {
+    palavraTentada = palavraTentada.toLowerCase();
+    const palavraCorreta = letrasEscolhidas.join("").toLowerCase();
 
-    if (letrasEscolhidas.includes(letra)) {
-      setLetrasCorretas((actualLetrasCorretas) => [
-        ...actualLetrasCorretas,
-        letra,
-      ]);
+    // Adicionar tentativa ao array
+    setTentativasFeitas((prev) => [...prev, palavraTentada.toUpperCase()]);
+
+    console.log("Tentativa:", palavraTentada);
+    console.log("Palavra correta:", palavraCorreta);
+
+    // Se acertou a palavra
+    if (palavraTentada === palavraCorreta) {
+      // Calcular pontuação baseado nas tentativas restantes
+      const tentativasRestantes = tentativas - tentativasFeitas.length;
+      const pontos = tentativasRestantes * 20;
+      setPontuacao((actualPontuacao) => actualPontuacao + pontos);
+
+      // IMPORTANTE: Reiniciar o jogo após acerto
+      setTimeout(() => {
+        startGame(); // Isso já chama limparEstados()
+      }, 1500); // Delay de 1.5s para ver a palavra correta
     } else {
-      setLetrasErradas((actualLetrasErradas) => [
-        ...actualLetrasErradas,
-        letra,
-      ]);
-      setTentativas((actualTentativas) => actualTentativas - 1);
+      // Diminuir tentativas apenas se errou
+      const novasTentativasRestantes =
+        tentativas - (tentativasFeitas.length + 1);
+
+      if (novasTentativasRestantes <= 0) {
+        // Game Over
+        setTimeout(() => {
+          setGameStage(fases[2].name);
+        }, 1000);
+      }
     }
   };
 
   const limparEstados = () => {
-    //setLetrasEscolhidas([]);
     setLetrasCorretas([]);
     setLetrasErradas([]);
+    setTentativas(5);
+    setTentativasFeitas([]); // NOVO: Limpar tentativas feitas
   };
 
   //verificar se as tentativas acabaram
   useEffect(() => {
-    if (tentativas <= 0) {
-      //resetar todos os estados
-      limparEstados();
-      setGameStage(fases[2].name);
+    if (tentativasFeitas.length >= 5 && gameStage === "jogo") {
+      const palavraCorreta = letrasEscolhidas.join("").toLowerCase();
+      const ultimaTentativa =
+        tentativasFeitas[tentativasFeitas.length - 1]?.toLowerCase();
+
+      // Se a última tentativa não foi a correta, vai para game over
+      if (ultimaTentativa !== palavraCorreta) {
+        setTimeout(() => {
+          limparEstados();
+          setGameStage(fases[2].name);
+        }, 1000);
+      }
     }
-  }, [tentativas]);
-
-  // verificar se o usuario ganhou
-  useEffect(() => {
-    const letrasUnicas = [...new Set(letrasEscolhidas)];
-
-    //condicao de vitoria
-    if (letrasCorretas.length === letrasUnicas.length) {
-      //adicionar pontuacao
-      setPontuacao((actualPontuacao) => actualPontuacao + 100);
-
-      //reiniciar o jogo com nova palavra
-      limparEstados();
-      startGame();
-    }
-  }, [letrasCorretas, letrasEscolhidas, startGame]);
+  }, [tentativasFeitas, gameStage, letrasEscolhidas]);
 
   const reiniciar = () => {
     setPontuacao(0);
-    setTentativas(3);
+    setTentativas(5);
+    setTentativasFeitas([]); // NOVO: Limpar tentativas
 
     setGameStage(fases[0].name);
   };
+
   return (
     <div className="App">
       {gameStage === "inicio" && <PaginaInicial startGame={startGame} />}
@@ -129,10 +142,15 @@ function App() {
           letrasErradas={letrasErradas}
           tentativas={tentativas}
           pontuacao={pontuacao}
+          tentativasFeitas={tentativasFeitas} // NOVO: Passar como prop
         />
       )}
       {gameStage === "fim" && (
-        <Fim reiniciar={reiniciar} pontuacao={pontuacao} />
+        <Fim
+          reiniciar={reiniciar}
+          pontuacao={pontuacao}
+          palavraEscolhida={palavraEscolhida}
+        />
       )}
     </div>
   );

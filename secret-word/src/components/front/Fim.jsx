@@ -1,24 +1,33 @@
 import "../css/Fim.css";
 
-const Fim = ({ reiniciar, pontuacao }) => {
+const Fim = ({ reiniciar, pontuacao, palavraEscolhida }) => {
   return (
     <div className="fim">
-      <h2>Fim de Jogo!</h2>
+      <div className="fim-container">
+        <h2 className="fim-titulo">
+          {pontuacao > 0 ? "Parabéns!" : "Fim de Jogo!"}
+        </h2>
 
-      <div className="pontuacao-final">
-        Sua pontuação foi:
-        <span>{pontuacao} pontos</span>
+        <div className="palavra-revelada">
+          <p>A palavra era:</p>
+          <span className="palavra-destaque">{palavraEscolhida}</span>
+        </div>
+
+        <div className="pontuacao-final">
+          <p>Pontuação Total</p>
+          <span className="pontos">{pontuacao}</span>
+        </div>
+
+        {/* Mensagem motivacional */}
+        <p className="mensagem-final">Muito bem! Continue praticando =)</p>
+
+        {/* Botões */}
+        <div className="acoes-fim">
+          <button className="btn-reiniciar" onClick={reiniciar}>
+            Jogar Novamente
+          </button>
+        </div>
       </div>
-
-      <p>
-        {pontuacao > 200
-          ? "Excelente! Você é um mestre das palavras!"
-          : pontuacao > 100
-            ? "Muito bem! Continue praticando!"
-            : "Não desista! Tente novamente!"}
-      </p>
-
-      <button onClick={reiniciar}>Jogar Novamente</button>
     </div>
   );
 };
