@@ -8,7 +8,7 @@ O projeto foi desenvolvido com foco na consolidação de fundamentos
 essenciais do React, especialmente gerenciamento de estado, renderização
 condicional e organização modular.
 
-------------------------------------------------------------------------
+---
 
 ## 📋 Sobre o Projeto
 
@@ -23,19 +23,19 @@ A cada erro: - O número de tentativas diminui
 O jogo finaliza automaticamente quando: - O jogador descobre todas as
 letras - Ou esgota o número de tentativas disponíveis
 
-------------------------------------------------------------------------
+---
 
 ## 🚀 Funcionalidades
 
--   Fluxo dinâmico de telas (Início → Jogo → Game Over)
--   Sistema de categorias como dica
--   Validação de letras (case insensitive)
--   Bloqueio de repetição de letras já utilizadas
--   Sistema de pontuação progressiva
--   Reinício automático da partida
--   Controle automático de foco no input
+- Fluxo dinâmico de telas (Início → Jogo → Game Over)
+- Sistema de categorias como dica
+- Validação de letras (case insensitive)
+- Bloqueio de repetição de letras já utilizadas
+- Sistema de pontuação progressiva
+- Reinício automático da partida
+- Controle automático de foco no input
 
-------------------------------------------------------------------------
+---
 
 ## 🧠 Conceitos React Aplicados
 
@@ -60,40 +60,40 @@ performance.
 Separação da lista de palavras em `data/words.js`, isolando regra de
 negócio da interface.
 
-------------------------------------------------------------------------
+---
 
 ## 🛠️ Tecnologias Utilizadas
 
--   React 18
--   JavaScript (ES6+)
--   CSS Modules
+- React 18
+- JavaScript (ES6+)
+- CSS Modules
 
-------------------------------------------------------------------------
+---
 
 ## 📦 Instalação e Execução
 
 ### 1️⃣ Clonar o Repositório
 
-``` bash
+```bash
 git clone https://github.com/ThhiagoCarvalho/Adivinha-a-Palavra.git
 cd Adivinha-a-Palavra
 ```
 
 ### 2️⃣ Instalar Dependências
 
-``` bash
+```bash
 npm install
 ```
 
 ### 3️⃣ Iniciar a Aplicação
 
-``` bash
+```bash
 npm start
 ```
 
 A aplicação será iniciada em: http://localhost:3000
 
-------------------------------------------------------------------------
+---
 
 ## 📁 Estrutura do Projeto
 
@@ -104,18 +104,18 @@ A aplicação será iniciada em: http://localhost:3000
     ├── App.css
     └── index.js
 
-------------------------------------------------------------------------
+---
 
 ## 🎯 Objetivo Técnico
 
 Este projeto foi desenvolvido como exercício prático para aprofundamento
 em:
 
--   Sincronização entre estado e interface
--   Renderização condicional
--   Organização modular de aplicações SPA
--   Separação entre lógica de negócio e camada visual
+- Sincronização entre estado e interface
+- Renderização condicional
+- Organização modular de aplicações SPA
+- Separação entre lógica de negócio e camada visual
 
-------------------------------------------------------------------------
+---
 
 Desenvolvido por Thiago Cesar Carvalho 🚀
