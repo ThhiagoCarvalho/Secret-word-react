@@ -97,12 +97,25 @@ A aplicação será iniciada em: http://localhost:3000
 
 ## 📁 Estrutura do Projeto
 
-    src/
-    ├── components/
-    ├── data/
-    ├── App.js
-    ├── App.css
-    └── index.js
+src/
+├── components/
+│ ├── css/ # Estilos específicos de componentes
+│ │
+│ └── front/
+│ ├── PaginaInicial.jsx # Tela inicial do jogo
+│ ├── Jogo.jsx # Tela principal com a lógica da partida
+│ └── Fim.jsx # Tela exibida ao finalizar o jogo
+│
+├── data/
+│ └── word.js # Lista de palavras e categorias
+│
+├── App.js # Controle principal de estados e fluxo
+├── App.css # Estilos globais da aplicação
+├── App.test.js # Testes da aplicação
+├── index.js # Ponto de entrada do React
+├── index.css # Estilos base
+├── logo.svg # Asset padrão do projeto
+└── reportWebVitals.js # Monitoramento de performance
 
 ---
 
