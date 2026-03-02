@@ -2,7 +2,6 @@ export const wordsList = {
   carro: [
     "Motor",
     "Porta",
-    "Capô",
     "Pneu",
     "Antena",
     "Volante",
@@ -14,9 +13,6 @@ export const wordsList = {
 
   fruta: [
     "Banana",
-    "Maçã",
-    "Pêra",
-    "Mamão",
     "Laranja",
     "Uva",
     "Manga",
@@ -24,22 +20,17 @@ export const wordsList = {
     "Melancia",
     "Morango",
     "Kiwi",
-    "Limão",
   ],
 
   corpo: [
     "Braço",
     "Perna",
-    "Cérebro",
     "Pescoço",
     "Olhos",
-    "Mão",
     "Dedo",
     "Nariz",
     "Boca",
     "Orelha",
-    "Coração",
-    "Pulmão",
   ],
 
   computador: [
@@ -70,23 +61,18 @@ export const wordsList = {
 
   alimento: [
     "Arroz",
-    "Feijão",
     "Carne",
     "Leite",
     "Ovo",
-    "Pão",
     "Queijo",
     "Manteiga",
     "Sal",
-    "Açúcar",
-    "Macarrão",
     "Batata",
   ],
 
   animal: [
     "Cachorro",
     "Gato",
-    "Leão",
     "Tigre",
     "Elefante",
     "Macaco",
@@ -97,7 +83,6 @@ export const wordsList = {
   ],
 
   profissão: [
-    "Médico",
     "Professor",
     "Enfermeiro",
     "Engenheiro",
@@ -109,17 +94,15 @@ export const wordsList = {
 
   esporte: [
     "Futebol",
-    "Vôlei",
+    "Volei",
     "Basquete",
     "Tênis",
     "Natação",
     "Corrida",
     "Boxe",
-    "Judô",
   ],
 
   música: [
-    "Violão",
     "Piano",
     "Bateria",
     "Guitarra",
@@ -134,9 +117,7 @@ export const wordsList = {
     "Portugal",
     "Espanha",
     "França",
-    "Itália",
     "Alemanha",
-    "Japão",
     "China",
   ],
 
@@ -156,18 +137,14 @@ export const wordsList = {
   objeto: [
     "Mesa",
     "Cadeira",
-    "Sofá",
     "Cama",
     "Porta",
     "Janela",
     "Espelho",
-    "Relógio",
-    "Lápis",
     "Caneta",
   ],
 
   natureza: [
-    "Árvore",
     "Flor",
     "Pedra",
     "Rio",
